@@ -1,0 +1,34 @@
+{% load static %}
+
+{% block content %}
+
+<style>
+    /* static/css/style.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+#result {
+    font-weight: bold;
+}
+
+</style>
+
+<h1>Cancer Detection</h1>
+    
+<form id="imageForm" enctype="multipart/form-data" method="POST" action="{% url 'detect_cancer' %}">
+    {% csrf_token %}
+    <input type="file" name="image" id="imageInput" accept="image/*" required>
+    <input type="submit" value="Detect Cancer">
+</form>
+
+<div id="result"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+{% endblock content %}
